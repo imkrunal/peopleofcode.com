@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
 
-const Input = ({
+const Textarea = ({
   label,
   name,
-  type,
   placeholder,
-  addOn,
   value,
   error,
+  rows,
   onChange,
   ...props
 }) => {
@@ -22,21 +21,16 @@ const Input = ({
           {label}
         </label>
       )}
-      <div className="relative mt-1 flex rounded-md shadow-sm">
-        {addOn && (
-          <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
-            {addOn}
-          </span>
-        )}
-        <input
-          type={type || 'text'}
+      <div className="relative mt-1 rounded-md shadow-sm">
+        <textarea
           name={name}
           id={name}
-          className={`"block sm:text-sm" w-full pr-10 focus:outline-none ${
+          className={`block w-full rounded-md shadow-sm sm:text-sm ${
             error
-              ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300 text-gray-900 placeholder-gray-300 focus:border-indigo-600 focus:ring-indigo-500'
-          } ${addOn ? 'rounded-r-md ' : 'rounded-md '}`}
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
+          }`}
+          rows={rows}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -59,15 +53,14 @@ const Input = ({
   )
 }
 
-Input.propTypes = {
+Textarea.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  type: PropTypes.oneOf(['email', 'password', 'text']),
   placeholder: PropTypes.string,
   value: PropTypes.string,
   error: PropTypes.string,
-  addOn: PropTypes.any,
+  rows: PropTypes.number,
   onChange: PropTypes.func.isRequired,
 }
 
-export default Input
+export default Textarea

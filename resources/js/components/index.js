@@ -1,2 +1,2 @@
 export { Layout } from './layout'
-export { Input, Checkbox } from './form'
+export { Input, Checkbox, ImageUpload, Textarea, DragDropUpload } from './form'

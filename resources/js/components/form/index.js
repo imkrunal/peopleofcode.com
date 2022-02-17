@@ -1,2 +1,5 @@
 export { default as Input } from './Input'
 export { default as Checkbox } from './Checkbox'
+export { default as ImageUpload } from './ImageUpload'
+export { default as Textarea } from './Textarea'
+export { default as DragDropUpload } from './DragDropUpload'

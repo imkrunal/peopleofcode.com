@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/settings', [ProfilesController::class, 'index'])->name('settings');
+    Route::post('/update-role', [ProfilesController::class, 'updateRole'])->name('update-role');
+
+    Route::group(['prefix' => 'developers'], function () {
+        Route::post('/update-basic-information', [DevelopersController::class, 'updateBasicInformation']);
+    });
+});

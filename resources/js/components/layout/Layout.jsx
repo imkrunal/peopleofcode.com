@@ -4,7 +4,7 @@ import Navigation from './Navigation'
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navigation />
       {children}
       <Footer />

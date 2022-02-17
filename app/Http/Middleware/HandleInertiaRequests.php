@@ -38,7 +38,8 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'appName' => config('app.name'),
-            'user' => auth()->user()
+            'user' => request()->user() ? request()->user()->load('profile') : null,
+            'role' => request()->user()->roles ?? null
         ]);
     }
 }
