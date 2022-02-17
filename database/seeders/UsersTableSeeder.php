@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Developer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,5 +27,29 @@ class UsersTableSeeder extends Seeder
         $adminUser = User::firstOrCreate(['username' => $adminInfo['username']], $adminInfo);
 
         $adminUser->syncRoles(['Admin']);
+
+        $devInfo = [
+            'username' => 'imkrunal',
+            'email' => 'krunal@peopleofcode.com',
+            'password' => Hash::make('Password123#'),
+            'email_verified_at' => now()
+        ];
+
+        $devUser = User::firstOrCreate(['username' => $devInfo['username']], $devInfo);
+
+        $devUser->syncRoles(['Developer']);
+
+        $basicInfo = [
+            'first_name' => 'Krunal',
+            'last_name' => 'Shah',
+            'title' => 'Technical Lead',
+            'bio' => 'I enjoy building great software and helping others do the same. I have a passion for technology, education, and software development and enjoy opportunities to combine the three.',
+            'website' => 'https://krunal.me',
+            'github' => 'imkrunal',
+            'twitter' => 'krunal7091',
+            'linkedin' => 'krunal7091'
+        ];
+
+        Developer::firstOrCreate(['user_id' => $devUser['id']], $basicInfo);
     }
 }

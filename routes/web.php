@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'developers'], function () {
         Route::post('/update-basic-information', [DevelopersController::class, 'updateBasicInformation']);
+        Route::post('/update-work-preferences', [DevelopersController::class, 'updateWorkPreferences']);
     });
 });

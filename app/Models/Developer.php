@@ -12,6 +12,7 @@ class Developer extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'title',
         'avatar',
         'cover',
         'bio',

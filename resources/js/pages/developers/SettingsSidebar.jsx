@@ -1,8 +1,9 @@
 import {
-  AcademicCapIcon,
-  AdjustmentsIcon,
-  CogIcon,
-  OfficeBuildingIcon,
+  // AcademicCapIcon,
+  // AdjustmentsIcon,
+  // CogIcon,
+  // OfficeBuildingIcon,
+  PuzzleIcon,
   UserCircleIcon,
 } from '@heroicons/react/outline'
 import { classNames } from '../../utils/helpers'
@@ -14,28 +15,34 @@ const navigation = [
     icon: UserCircleIcon,
     current: true,
   },
+  // {
+  //   name: 'Employment',
+  //   href: '/settings/employment',
+  //   icon: OfficeBuildingIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Experience',
+  //   href: '/settings/experience',
+  //   icon: CogIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Skills',
+  //   href: '/settings/skills',
+  //   icon: AdjustmentsIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Education',
+  //   href: '/settings/education',
+  //   icon: AcademicCapIcon,
+  //   current: false,
+  // },
   {
-    name: 'Employment',
-    href: '/settings/employment',
-    icon: OfficeBuildingIcon,
-    current: false,
-  },
-  {
-    name: 'Experience',
-    href: '/settings/experience',
-    icon: CogIcon,
-    current: false,
-  },
-  {
-    name: 'Skills',
-    href: '/settings/skills',
-    icon: AdjustmentsIcon,
-    current: false,
-  },
-  {
-    name: 'Education',
-    href: '/settings/education',
-    icon: AcademicCapIcon,
+    name: 'Work Preferences',
+    href: '/settings/work-preferences',
+    icon: PuzzleIcon,
     current: false,
   },
 ]

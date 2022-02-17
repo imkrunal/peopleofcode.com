@@ -15,6 +15,7 @@ const Settings = () => {
     pick(basicInformation, [
       'first_name',
       'last_name',
+      'title',
       'bio',
       'website',
       'github',
@@ -23,6 +24,7 @@ const Settings = () => {
     ]) || {
       first_name: '',
       last_name: '',
+      title: '',
       avatar: '',
       cover: '',
       bio: '',
@@ -77,6 +79,14 @@ const Settings = () => {
                     value={data.last_name}
                     error={errors.last_name}
                     onChange={(e) => setData('last_name', e.target.value)}
+                  />
+                  <Input
+                    className="col-span-6"
+                    label="Title"
+                    name="title"
+                    value={data.title}
+                    error={errors.title}
+                    onChange={(e) => setData('title', e.target.value)}
                   />
                   <Textarea
                     className="col-span-6"

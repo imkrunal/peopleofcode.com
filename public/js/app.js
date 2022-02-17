@@ -7046,9 +7046,10 @@ __webpack_require__.r(__webpack_exports__);
 var Settings = function Settings() {
   var basicInformation = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.basicInformation;
 
-  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)((0,lodash__WEBPACK_IMPORTED_MODULE_1__.pick)(basicInformation, ['first_name', 'last_name', 'bio', 'website', 'github', 'twitter', 'linkedin']) || {
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)((0,lodash__WEBPACK_IMPORTED_MODULE_1__.pick)(basicInformation, ['first_name', 'last_name', 'title', 'bio', 'website', 'github', 'twitter', 'linkedin']) || {
     first_name: '',
     last_name: '',
+    title: '',
     avatar: '',
     cover: '',
     bio: '',
@@ -7114,6 +7115,15 @@ var Settings = function Settings() {
                   error: errors.last_name,
                   onChange: function onChange(e) {
                     return setData('last_name', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6",
+                  label: "Title",
+                  name: "title",
+                  value: data.title,
+                  error: errors.title,
+                  onChange: function onChange(e) {
+                    return setData('title', e.target.value);
                   }
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
                   className: "col-span-6",
@@ -7236,25 +7246,34 @@ var navigation = [{
   href: '/settings',
   icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.UserCircleIcon,
   current: true
-}, {
-  name: 'Employment',
-  href: '/settings/employment',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.OfficeBuildingIcon,
-  current: false
-}, {
-  name: 'Experience',
-  href: '/settings/experience',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.CogIcon,
-  current: false
-}, {
-  name: 'Skills',
-  href: '/settings/skills',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.AdjustmentsIcon,
-  current: false
-}, {
-  name: 'Education',
-  href: '/settings/education',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.AcademicCapIcon,
+}, // {
+//   name: 'Employment',
+//   href: '/settings/employment',
+//   icon: OfficeBuildingIcon,
+//   current: false,
+// },
+// {
+//   name: 'Experience',
+//   href: '/settings/experience',
+//   icon: CogIcon,
+//   current: false,
+// },
+// {
+//   name: 'Skills',
+//   href: '/settings/skills',
+//   icon: AdjustmentsIcon,
+//   current: false,
+// },
+// {
+//   name: 'Education',
+//   href: '/settings/education',
+//   icon: AcademicCapIcon,
+//   current: false,
+// },
+{
+  name: 'Work Preferences',
+  href: '/settings/work-preferences',
+  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.PuzzleIcon,
   current: false
 }];
 
