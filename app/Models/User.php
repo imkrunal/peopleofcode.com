@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User\BasicInformation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,6 +46,6 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(Developer::class);
+        return $this->hasOne(BasicInformation::class);
     }
 }

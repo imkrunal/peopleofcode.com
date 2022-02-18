@@ -7019,295 +7019,10 @@ Register.layout = function (page) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/developers/Settings.jsx":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/developers/Settings.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components */ "./resources/js/components/index.js");
-/* harmony import */ var _SettingsSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SettingsSidebar */ "./resources/js/pages/developers/SettingsSidebar.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-
-var Settings = function Settings() {
-  var basicInformation = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.basicInformation;
-
-  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)((0,lodash__WEBPACK_IMPORTED_MODULE_1__.pick)(basicInformation, ['first_name', 'last_name', 'title', 'bio', 'website', 'github', 'twitter', 'linkedin']) || {
-    first_name: '',
-    last_name: '',
-    title: '',
-    avatar: '',
-    cover: '',
-    bio: '',
-    website: '',
-    github: '',
-    twitter: '',
-    linkedin: ''
-  }),
-      data = _useForm.data,
-      setData = _useForm.setData,
-      post = _useForm.post,
-      processing = _useForm.processing,
-      errors = _useForm.errors;
-
-  var handleBasicInfoUpdate = function handleBasicInfoUpdate(e) {
-    e.preventDefault();
-    console.log(data);
-    post('/developers/update-basic-information', {
-      forceFormData: true
-    });
-  };
-
-  console.log(basicInformation);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "mx-auto max-w-7xl  px-16 py-8",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-      className: "mb-8 text-2xl font-medium text-gray-700",
-      children: "Update Settings"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "lg:grid lg:grid-cols-12 lg:gap-x-5",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SettingsSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "space-y-6 sm:px-6 lg:col-span-9 lg:px-0",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
-          onSubmit: handleBasicInfoUpdate,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "shadow sm:overflow-hidden sm:rounded-md",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "space-y-6 bg-white py-6 px-4 sm:p-6",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-                  className: "text-lg font-medium leading-6 text-gray-900",
-                  children: "Basic Information"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-                  className: "mt-1 text-sm text-gray-500",
-                  children: "This information will be displayed publicly so be careful what you share."
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "grid grid-cols-6 gap-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "First Name",
-                  name: "first_name",
-                  value: data.first_name,
-                  error: errors.first_name,
-                  onChange: function onChange(e) {
-                    return setData('first_name', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "Last Name",
-                  name: "last_name",
-                  value: data.last_name,
-                  error: errors.last_name,
-                  onChange: function onChange(e) {
-                    return setData('last_name', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6",
-                  label: "Title",
-                  name: "title",
-                  value: data.title,
-                  error: errors.title,
-                  onChange: function onChange(e) {
-                    return setData('title', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
-                  className: "col-span-6",
-                  label: "Bio",
-                  name: "bio",
-                  rows: 5,
-                  value: data.bio,
-                  error: errors.bio,
-                  onChange: function onChange(e) {
-                    return setData('bio', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.ImageUpload, {
-                  label: "Avatar",
-                  name: "avatar",
-                  value: data.avatar,
-                  error: errors.avatar,
-                  defaultValue: "/storage/avatars/".concat(basicInformation.avatar),
-                  onChange: function onChange(e) {
-                    return setData('avatar', e.target.files[0]);
-                  },
-                  className: "col-span-6",
-                  previewClasses: "inline-block h-24 w-24 overflow-hidden rounded-full bg-gray-100"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.DragDropUpload, {
-                  label: "Cover",
-                  name: "cover",
-                  value: data.cover,
-                  error: errors.cover,
-                  defaultValue: "/storage/covers/".concat(basicInformation.cover),
-                  onChange: function onChange(e) {
-                    return setData('cover', e.target.files[0]);
-                  },
-                  className: "col-span-6",
-                  accept: "image/*"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "Website",
-                  name: "website",
-                  value: data.website,
-                  error: errors.website,
-                  onChange: function onChange(e) {
-                    return setData('website', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "Github",
-                  name: "github",
-                  addOn: "github.com/",
-                  value: data.github,
-                  error: errors.github,
-                  onChange: function onChange(e) {
-                    return setData('github', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "Twitter",
-                  name: "twitter",
-                  addOn: "twitter.com/",
-                  value: data.twitter,
-                  error: errors.twitter,
-                  onChange: function onChange(e) {
-                    return setData('twitter', e.target.value);
-                  }
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-                  className: "col-span-6 sm:col-span-3",
-                  label: "Linkedin",
-                  name: "linkedin",
-                  addOn: "linkedin.com/in/",
-                  value: data.linkedin,
-                  error: errors.linkedin,
-                  onChange: function onChange(e) {
-                    return setData('linkedin', e.target.value);
-                  }
-                })]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              className: "bg-gray-50 px-4 py-3 text-right sm:px-6",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                type: "submit",
-                className: "inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
-                children: processing ? 'Loading...' : 'Save'
-              })
-            })]
-          })
-        })
-      })]
-    })]
-  });
-};
-
-Settings.layout = function (page) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Layout, {
-    children: page
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Settings);
-
-/***/ }),
-
-/***/ "./resources/js/pages/developers/SettingsSidebar.jsx":
-/*!***********************************************************!*\
-  !*** ./resources/js/pages/developers/SettingsSidebar.jsx ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @heroicons/react/outline */ "./node_modules/@heroicons/react/outline/esm/index.js");
-/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/helpers */ "./resources/js/utils/helpers.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-var navigation = [{
-  name: 'Basic Information',
-  href: '/settings',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.UserCircleIcon,
-  current: true
-}, // {
-//   name: 'Employment',
-//   href: '/settings/employment',
-//   icon: OfficeBuildingIcon,
-//   current: false,
-// },
-// {
-//   name: 'Experience',
-//   href: '/settings/experience',
-//   icon: CogIcon,
-//   current: false,
-// },
-// {
-//   name: 'Skills',
-//   href: '/settings/skills',
-//   icon: AdjustmentsIcon,
-//   current: false,
-// },
-// {
-//   name: 'Education',
-//   href: '/settings/education',
-//   icon: AcademicCapIcon,
-//   current: false,
-// },
-{
-  name: 'Work Preferences',
-  href: '/settings/work-preferences',
-  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.PuzzleIcon,
-  current: false
-}];
-
-var SettingsSidebar = function SettingsSidebar() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("aside", {
-    className: "py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
-      className: "space-y-1",
-      children: navigation.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
-          href: item.href,
-          className: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.classNames)(item.current ? 'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center rounded-md px-3 py-2 text-sm font-medium'),
-          "aria-current": item.current ? 'page' : undefined,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(item.icon, {
-            className: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.classNames)(item.current ? 'text-indigo-500 group-hover:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500', '-ml-1 mr-3 h-6 w-6 flex-shrink-0'),
-            "aria-hidden": "true"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "truncate",
-            children: item.name
-          })]
-        }, item.name);
-      })
-    })
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsSidebar);
-
-/***/ }),
-
-/***/ "./resources/js/pages/profile/SelectRole.jsx":
-/*!***************************************************!*\
-  !*** ./resources/js/pages/profile/SelectRole.jsx ***!
-  \***************************************************/
+/***/ "./resources/js/pages/auth/SelectRole.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/pages/auth/SelectRole.jsx ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7407,6 +7122,280 @@ SelectRole.layout = function (page) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SelectRole);
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings/BasicInformation.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/pages/settings/BasicInformation.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components */ "./resources/js/components/index.js");
+/* harmony import */ var _SettingsSidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SettingsSidebar */ "./resources/js/pages/settings/SettingsSidebar.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+var Settings = function Settings() {
+  var basicInformation = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.basicInformation;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)((0,lodash__WEBPACK_IMPORTED_MODULE_1__.pick)(basicInformation, ['name', 'title', 'bio', 'website', 'github', 'twitter', 'linkedin']) || {
+    name: '',
+    title: '',
+    avatar: '',
+    cover: '',
+    bio: '',
+    website: '',
+    github: '',
+    twitter: '',
+    linkedin: ''
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post,
+      processing = _useForm.processing,
+      errors = _useForm.errors;
+
+  var handleBasicInfoUpdate = function handleBasicInfoUpdate(e) {
+    e.preventDefault();
+    post('/settings/update-basic-information', {
+      forceFormData: true
+    });
+  };
+
+  console.log(basicInformation);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "mx-auto max-w-7xl  px-16 py-8",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      className: "mb-8 text-2xl font-medium text-gray-700",
+      children: "Update Settings"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "lg:grid lg:grid-cols-12 lg:gap-x-5",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SettingsSidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "space-y-6 sm:px-6 lg:col-span-9 lg:px-0",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
+          onSubmit: handleBasicInfoUpdate,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "shadow sm:overflow-hidden sm:rounded-md",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "space-y-6 bg-white py-6 px-4 sm:p-6",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+                  className: "text-lg font-medium leading-6 text-gray-900",
+                  children: "Basic Information"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  className: "mt-1 text-sm text-gray-500",
+                  children: "This information will be displayed publicly so be careful what you share."
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "grid grid-cols-6 gap-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6 sm:col-span-3",
+                  label: "Name",
+                  name: "name",
+                  value: data.name,
+                  error: errors.name,
+                  onChange: function onChange(e) {
+                    return setData('name', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6",
+                  label: "Title",
+                  name: "title",
+                  value: data.title,
+                  error: errors.title,
+                  onChange: function onChange(e) {
+                    return setData('title', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Textarea, {
+                  className: "col-span-6",
+                  label: "Bio",
+                  name: "bio",
+                  rows: 5,
+                  value: data.bio,
+                  error: errors.bio,
+                  onChange: function onChange(e) {
+                    return setData('bio', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.ImageUpload, {
+                  label: "Avatar",
+                  name: "avatar",
+                  value: data.avatar,
+                  error: errors.avatar,
+                  defaultValue: basicInformation.avatar !== null && "/storage/avatars/".concat(basicInformation.avatar),
+                  onChange: function onChange(e) {
+                    return setData('avatar', e.target.files[0]);
+                  },
+                  className: "col-span-6",
+                  previewClasses: "inline-block h-24 w-24 overflow-hidden rounded-full bg-gray-100"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.DragDropUpload, {
+                  label: "Cover",
+                  name: "cover",
+                  value: data.cover,
+                  error: errors.cover,
+                  defaultValue: basicInformation.cover !== null && "/storage/covers/".concat(basicInformation.cover),
+                  onChange: function onChange(e) {
+                    return setData('cover', e.target.files[0]);
+                  },
+                  className: "col-span-6",
+                  accept: "image/*"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6 sm:col-span-3",
+                  label: "Website",
+                  name: "website",
+                  value: data.website,
+                  error: errors.website,
+                  onChange: function onChange(e) {
+                    return setData('website', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6 sm:col-span-3",
+                  label: "Github",
+                  name: "github",
+                  addOn: "github.com/",
+                  value: data.github,
+                  error: errors.github,
+                  onChange: function onChange(e) {
+                    return setData('github', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6 sm:col-span-3",
+                  label: "Twitter",
+                  name: "twitter",
+                  addOn: "twitter.com/",
+                  value: data.twitter,
+                  error: errors.twitter,
+                  onChange: function onChange(e) {
+                    return setData('twitter', e.target.value);
+                  }
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+                  className: "col-span-6 sm:col-span-3",
+                  label: "Linkedin",
+                  name: "linkedin",
+                  addOn: "linkedin.com/in/",
+                  value: data.linkedin,
+                  error: errors.linkedin,
+                  onChange: function onChange(e) {
+                    return setData('linkedin', e.target.value);
+                  }
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "bg-gray-50 px-4 py-3 text-right sm:px-6",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                type: "submit",
+                className: "inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
+                children: processing ? 'Loading...' : 'Save'
+              })
+            })]
+          })
+        })
+      })]
+    })]
+  });
+};
+
+Settings.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__.Layout, {
+    children: page
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Settings);
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings/SettingsSidebar.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/settings/SettingsSidebar.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @heroicons/react/outline */ "./node_modules/@heroicons/react/outline/esm/index.js");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/helpers */ "./resources/js/utils/helpers.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var navigation = [{
+  name: 'Basic Information',
+  href: '/settings',
+  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.UserCircleIcon,
+  current: true
+}, // {
+//   name: 'Employment',
+//   href: '/settings/employment',
+//   icon: OfficeBuildingIcon,
+//   current: false,
+// },
+// {
+//   name: 'Experience',
+//   href: '/settings/experience',
+//   icon: CogIcon,
+//   current: false,
+// },
+// {
+//   name: 'Skills',
+//   href: '/settings/skills',
+//   icon: AdjustmentsIcon,
+//   current: false,
+// },
+// {
+//   name: 'Education',
+//   href: '/settings/education',
+//   icon: AcademicCapIcon,
+//   current: false,
+// },
+{
+  name: 'Work Preferences',
+  href: '/settings/work-preferences',
+  icon: _heroicons_react_outline__WEBPACK_IMPORTED_MODULE_0__.PuzzleIcon,
+  current: false
+}];
+
+var SettingsSidebar = function SettingsSidebar() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("aside", {
+    className: "py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
+      className: "space-y-1",
+      children: navigation.map(function (item) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
+          href: item.href,
+          className: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.classNames)(item.current ? 'bg-gray-50 text-indigo-700 hover:bg-white hover:text-indigo-700' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center rounded-md px-3 py-2 text-sm font-medium'),
+          "aria-current": item.current ? 'page' : undefined,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(item.icon, {
+            className: (0,_utils_helpers__WEBPACK_IMPORTED_MODULE_1__.classNames)(item.current ? 'text-indigo-500 group-hover:text-indigo-500' : 'text-gray-400 group-hover:text-gray-500', '-ml-1 mr-3 h-6 w-6 flex-shrink-0'),
+            "aria-hidden": "true"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "truncate",
+            children: item.name
+          })]
+        }, item.name);
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SettingsSidebar);
 
 /***/ }),
 
@@ -60675,12 +60664,12 @@ var map = {
 	"./auth/Login.jsx": "./resources/js/pages/auth/Login.jsx",
 	"./auth/Register": "./resources/js/pages/auth/Register.jsx",
 	"./auth/Register.jsx": "./resources/js/pages/auth/Register.jsx",
-	"./developers/Settings": "./resources/js/pages/developers/Settings.jsx",
-	"./developers/Settings.jsx": "./resources/js/pages/developers/Settings.jsx",
-	"./developers/SettingsSidebar": "./resources/js/pages/developers/SettingsSidebar.jsx",
-	"./developers/SettingsSidebar.jsx": "./resources/js/pages/developers/SettingsSidebar.jsx",
-	"./profile/SelectRole": "./resources/js/pages/profile/SelectRole.jsx",
-	"./profile/SelectRole.jsx": "./resources/js/pages/profile/SelectRole.jsx"
+	"./auth/SelectRole": "./resources/js/pages/auth/SelectRole.jsx",
+	"./auth/SelectRole.jsx": "./resources/js/pages/auth/SelectRole.jsx",
+	"./settings/BasicInformation": "./resources/js/pages/settings/BasicInformation.jsx",
+	"./settings/BasicInformation.jsx": "./resources/js/pages/settings/BasicInformation.jsx",
+	"./settings/SettingsSidebar": "./resources/js/pages/settings/SettingsSidebar.jsx",
+	"./settings/SettingsSidebar.jsx": "./resources/js/pages/settings/SettingsSidebar.jsx"
 };
 
 

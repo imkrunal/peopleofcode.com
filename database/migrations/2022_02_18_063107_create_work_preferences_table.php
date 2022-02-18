@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('developer_preferences', function (Blueprint $table) {
+        Schema::create('work_preferences', function (Blueprint $table) {
             $table->id();
             $table->string('weekly_availability')->nullable();
             $table->string('no_availability_reason')->nullable();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('developer_preferences');
+        Schema::dropIfExists('work_preferences');
     }
 };

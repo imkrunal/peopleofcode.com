@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeveloperPreference extends Model
+class WorkPreference extends Model
 {
     use HasFactory;
 

@@ -13,8 +13,7 @@ const Settings = () => {
   const { basicInformation } = usePage().props
   const { data, setData, post, processing, errors } = useForm(
     pick(basicInformation, [
-      'first_name',
-      'last_name',
+      'name',
       'title',
       'bio',
       'website',
@@ -22,8 +21,7 @@ const Settings = () => {
       'twitter',
       'linkedin',
     ]) || {
-      first_name: '',
-      last_name: '',
+      name: '',
       title: '',
       avatar: '',
       cover: '',
@@ -37,8 +35,7 @@ const Settings = () => {
 
   const handleBasicInfoUpdate = (e) => {
     e.preventDefault()
-    console.log(data)
-    post('/developers/update-basic-information', { forceFormData: true })
+    post('/settings/update-basic-information', { forceFormData: true })
   }
 
   console.log(basicInformation)
@@ -66,19 +63,11 @@ const Settings = () => {
                 <div className="grid grid-cols-6 gap-6">
                   <Input
                     className="col-span-6 sm:col-span-3"
-                    label="First Name"
-                    name="first_name"
-                    value={data.first_name}
-                    error={errors.first_name}
-                    onChange={(e) => setData('first_name', e.target.value)}
-                  />
-                  <Input
-                    className="col-span-6 sm:col-span-3"
-                    label="Last Name"
-                    name="last_name"
-                    value={data.last_name}
-                    error={errors.last_name}
-                    onChange={(e) => setData('last_name', e.target.value)}
+                    label="Name"
+                    name="name"
+                    value={data.name}
+                    error={errors.name}
+                    onChange={(e) => setData('name', e.target.value)}
                   />
                   <Input
                     className="col-span-6"
@@ -102,7 +91,10 @@ const Settings = () => {
                     name="avatar"
                     value={data.avatar}
                     error={errors.avatar}
-                    defaultValue={`/storage/avatars/${basicInformation.avatar}`}
+                    defaultValue={
+                      basicInformation.avatar !== null &&
+                      `/storage/avatars/${basicInformation.avatar}`
+                    }
                     onChange={(e) => setData('avatar', e.target.files[0])}
                     className="col-span-6"
                     previewClasses="inline-block h-24 w-24 overflow-hidden rounded-full bg-gray-100"
@@ -112,7 +104,10 @@ const Settings = () => {
                     name="cover"
                     value={data.cover}
                     error={errors.cover}
-                    defaultValue={`/storage/covers/${basicInformation.cover}`}
+                    defaultValue={
+                      basicInformation.cover !== null &&
+                      `/storage/covers/${basicInformation.cover}`
+                    }
                     onChange={(e) => setData('cover', e.target.files[0])}
                     className="col-span-6"
                     accept="image/*"

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Developer;
 use App\Models\User;
+use App\Models\User\BasicInformation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -40,8 +40,7 @@ class UsersTableSeeder extends Seeder
         $devUser->syncRoles(['Developer']);
 
         $basicInfo = [
-            'first_name' => 'Krunal',
-            'last_name' => 'Shah',
+            'name' => 'Krunal Shah',
             'title' => 'Technical Lead',
             'bio' => 'I enjoy building great software and helping others do the same. I have a passion for technology, education, and software development and enjoy opportunities to combine the three.',
             'website' => 'https://krunal.me',
@@ -50,6 +49,6 @@ class UsersTableSeeder extends Seeder
             'linkedin' => 'krunal7091'
         ];
 
-        Developer::firstOrCreate(['user_id' => $devUser['id']], $basicInfo);
+        BasicInformation::firstOrCreate(['user_id' => $devUser['id']], $basicInfo);
     }
 }

@@ -1,18 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\Developer;
+use App\Http\Controllers\Controller;
+use App\Models\User\BasicInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
-class DevelopersController extends Controller
+class BasicInformationsController extends Controller
 {
+    public function getBasicInformation()
+    {
+        $userHasRole = auth()->user()->roles;
+        $isDeveloper = auth()->user()->hasRole('Developer') || auth()->user()->hasRole('DeveloperPro');
+
+        if ($userHasRole->toArray() != []) {
+            if ($isDeveloper) {
+                $basicInformation = BasicInformation::where('user_id', auth()->user()->id)->first();
+                return Inertia::render('settings/BasicInformation', [
+                    'basicInformation' => $basicInformation
+                ]);
+            }
+        } else {
+            return Inertia::render('auth/SelectRole');
+        }
+    }
+
     public function updateBasicInformation(Request $request)
     {
         $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
+            'name' => ['required', 'string'],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'cover' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'bio' => ['nullable', 'string', 'max:250'],
@@ -23,8 +41,7 @@ class DevelopersController extends Controller
         ]);
 
         $developerInfo = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'bio' => $request->bio,
             'website' => $request->website,
             'github' => $request->github,
@@ -48,7 +65,7 @@ class DevelopersController extends Controller
             $developerInfo['cover'] = $filename;
         }
 
-        Developer::updateOrCreate([
+        BasicInformation::updateOrCreate([
             'user_id' => auth()->user()->id
         ], $developerInfo);
 
