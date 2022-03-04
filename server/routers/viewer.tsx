@@ -7,7 +7,7 @@ const publicViewerRouter = createRouter()
     },
   })
   .query("session", {
-    resolve({ ctx }) {
+    resolve({ ctx }: any) {
       return ctx.session;
     },
   });
