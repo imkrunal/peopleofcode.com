@@ -1,4 +1,6 @@
+import { Layout } from "@components/ui";
 import { trpc } from "@lib/trpc";
+import { NextPage } from "next";
 
 export default function Home() {
   const hello = trpc.useQuery(["viewer.hello"]);
@@ -11,3 +13,5 @@ export default function Home() {
     </div>
   );
 }
+
+Home.getLayout = (page: NextPage) => <Layout>{page}</Layout>;

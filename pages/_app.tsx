@@ -7,10 +7,11 @@ import AppProviders, { AppProps } from "@lib/app-providers";
 
 function MyApp(props: AppProps) {
   const { Component, pageProps, err } = props;
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <AppProviders {...props}>
-      <Component {...pageProps} err={err} />
+      {getLayout(<Component {...pageProps} err={err} />)}
     </AppProviders>
   );
 }
