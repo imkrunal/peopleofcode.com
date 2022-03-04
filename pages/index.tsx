@@ -1,3 +1,13 @@
+import { trpc } from "libs/trpc";
+
 export default function Home() {
-  return <div>Home</div>;
+  const hello = trpc.useQuery(["viewer.hello"]);
+  if (!hello.data) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div>
+      <p>{hello.data.message}</p>
+    </div>
+  );
 }
