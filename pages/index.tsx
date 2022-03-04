@@ -1,4 +1,4 @@
-import { trpc } from "libs/trpc";
+import { trpc } from "@lib/trpc";
 
 export default function Home() {
   const hello = trpc.useQuery(["viewer.hello"]);
