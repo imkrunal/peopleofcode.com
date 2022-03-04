@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -11,12 +12,19 @@ datasource db {
 }
 
 model User {
-  id              Int       @id @default(autoincrement())
-  email           String    @unique
-  password        String?
-  emailVerifiedAt DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id                 Int              @id @default(autoincrement())
+  email              String           @unique
+  password           String?
+  emailVerifiedAt    DateTime?
+  identityProvider   IdentityProvider @default(PEOPLEOFCODE)
+  identityProviderId String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
 
   @@map("users")
+}
+
+enum IdentityProvider {
+  GOOGLE
+  PEOPLEOFCODE
 }

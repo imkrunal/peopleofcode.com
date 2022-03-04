@@ -1,12 +1,18 @@
 import superjson from "superjson";
 import { withTRPC } from "@trpc/next";
-import { AppProps } from "next/app";
 import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
 import { loggerLink } from "@trpc/client/links/loggerLink";
 import "../styles/globals.css";
+import AppProviders, { AppProps } from "@lib/app-providers";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function MyApp(props: AppProps) {
+  const { Component, pageProps, err } = props;
+
+  return (
+    <AppProviders {...props}>
+      <Component {...pageProps} err={err} />
+    </AppProviders>
+  );
 }
 
 export default withTRPC({

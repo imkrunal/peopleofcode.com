@@ -11,6 +11,8 @@ services:
       - "3000:3000"
     networks:
       - poc
+    depends_on:
+      - postgres
   postgres:
     container_name: poc_postgres
     image: postgres:latest
