@@ -7,14 +7,14 @@ export function createRouter() {
 
 export function createProtectedRouter() {
   return createRouter().middleware(({ ctx, next }) => {
-    // if (!ctx.user || !ctx.session) {
-    //   throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
-    // }
+    if (!ctx.user || !ctx.session) {
+      throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
+    }
     return next({
       ctx: {
         ...ctx,
-        // session: ctx.session,
-        // user: ctx.user,
+        session: ctx.session,
+        user: ctx.user,
       },
     });
   });

@@ -1,4 +1,4 @@
-import { createRouter } from "@server/createRouter";
+import { createProtectedRouter, createRouter } from "@server/createRouter";
 
 const publicViewerRouter = createRouter()
   .query("hello", {
@@ -7,9 +7,22 @@ const publicViewerRouter = createRouter()
     },
   })
   .query("session", {
-    resolve({ ctx }: any) {
+    resolve({ ctx }) {
       return ctx.session;
     },
   });
 
-export const viewerRouter = createRouter().merge(publicViewerRouter);
+const loggedInViewerRouter = createProtectedRouter().query("me", {
+  resolve({ ctx: { user } }) {
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar,
+    };
+  },
+});
+
+export const viewerRouter = createRouter()
+  .merge(publicViewerRouter)
+  .merge(loggedInViewerRouter);

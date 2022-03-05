@@ -4,6 +4,11 @@ import GoogleProvider from "next-auth/providers/google";
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "@server/lib/constants";
 import { IdentityProvider } from "@prisma/client";
 import prisma from "@lib/prisma";
+import slugify from "slugify";
+import { randomString } from "@lib/random";
+
+const usernameSlug = (username: string) =>
+  slugify(username, { lower: true }) + "-" + randomString(6).toLowerCase();
 
 const providers: Provider[] = [
   GoogleProvider({
@@ -37,6 +42,9 @@ export default NextAuth({
         return {
           id: existingUser.id,
           email: existingUser.email,
+          avatar: existingUser.avatar,
+          name: existingUser.name,
+          username: existingUser.username,
         };
       };
 
@@ -48,6 +56,9 @@ export default NextAuth({
         return {
           id: user.id,
           email: user.email,
+          avatar: user.avatar,
+          name: user.name,
+          username: user.username,
         };
       }
 
@@ -78,17 +89,23 @@ export default NextAuth({
         return {
           id: existingUser.id,
           email: existingUser.email,
+          avatar: existingUser.avatar,
+          name: existingUser.name,
+          username: existingUser.username,
         };
       }
       return token;
     },
-    async session({ session }) {
+    async session({ session, token }) {
       const pocSession: Session = {
         ...session,
         user: {
           ...session.user,
+          id: token.id as number,
+          username: token.username as string,
         },
       };
+
       return pocSession;
     },
     async signIn({ user, account, profile }) {
@@ -117,11 +134,22 @@ export default NextAuth({
         });
 
         if (existingUserWithEmail) {
+          await prisma.user.update({
+            where: { email: user.email },
+            data: {
+              username: usernameSlug(user.name),
+              name: user.name,
+              avatar: user.image,
+            },
+          });
           return true;
         }
 
         await prisma.user.create({
           data: {
+            username: usernameSlug(user.name),
+            name: user.name,
+            avatar: user.image,
             email: user.email,
             identityProvider: idP,
             identityProviderId: user.id as string,

@@ -13,11 +13,32 @@ datasource db {
 
 model User {
   id                 Int              @id @default(autoincrement())
+  username           String           @unique
   email              String           @unique
   password           String?
   emailVerifiedAt    DateTime?
   identityProvider   IdentityProvider @default(PEOPLEOFCODE)
   identityProviderId String?
+  name               String?
+  avatar             String?
+  cover              String?
+  bio                String?
+  website            String?
+  twitter            String?
+  github             String?
+  linkedin           String?
+  availableOn        DateTime?
+  searchStatus       String?
+  minHourlyRate      Int?
+  maxHourlyRate      Int?
+  minSalary          Int?
+  maxSalary          Int?
+  timezone           String?
+  city               String?
+  state              String?
+  country            String?
+  latitude           Decimal?
+  longitude          Decimal?
   createdAt          DateTime         @default(now())
   updatedAt          DateTime         @updatedAt
 
