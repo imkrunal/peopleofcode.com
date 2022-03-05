@@ -24,11 +24,13 @@ export default function NavUserMenu() {
           <div>
             <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
               <span className="sr-only">Open user menu</span>
-              <img
-                className="h-8 w-8 rounded-full"
-                src={query.data?.avatar}
-                alt={query.data?.name}
-              />
+              {query.data.avatar !== null && (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={query.data?.avatar}
+                  // alt={query.data?.name}
+                />
+              )}
             </Menu.Button>
           </div>
           <Transition
