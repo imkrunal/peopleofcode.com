@@ -23,5 +23,14 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"],
+    "experimentalResolverFeatures": true,
+    "compilerOptions": {
+      "module": "CommonJS",
+      "types": ["node"]
+    }
+  }
 }
