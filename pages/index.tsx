@@ -1,5 +1,15 @@
+import { trpc } from "@lib/trpc";
+
 const Home = () => {
-  return <div className="text-4xl font-bold">People of Code</div>;
+  const hello = trpc.useQuery(["hello"]);
+  if (!hello.data) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div>
+      <p>{hello.data.greeting}</p>
+    </div>
+  );
 };
 
 export default Home;
