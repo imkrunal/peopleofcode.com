@@ -7,7 +7,7 @@ type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
 };
 
-const Checkbox = ({ name, label }: CheckboxProps) => {
+const Checkbox = ({ name, label, ...props }: CheckboxProps) => {
   const [input, { touched, error }] = useField(name);
 
   return (
@@ -19,7 +19,9 @@ const Checkbox = ({ name, label }: CheckboxProps) => {
           className={classNames(
             "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
           )}
+          checked={input.value}
           {...input}
+          {...props}
         />
         {label && (
           <label htmlFor={name} className="ml-2 block text-sm text-gray-900">

@@ -7,7 +7,7 @@ type InputProps = Omit<JSX.IntrinsicElements["input"], "name"> & {
   label?: string;
 };
 
-const Input = ({ name, label, placeholder, type }: InputProps) => {
+const Input = ({ name, label, placeholder, type, ...props }: InputProps) => {
   const [input, { touched, error }] = useField(name);
 
   return (
@@ -22,7 +22,7 @@ const Input = ({ name, label, placeholder, type }: InputProps) => {
       )}
       <div className="mt-1 relative rounded-md shadow-sm">
         <input
-          type={type}
+          type={type || "text"}
           id={name}
           className={classNames(
             "block w-full pr-10 focus:outline-none sm:text-sm rounded-md",
@@ -34,6 +34,7 @@ const Input = ({ name, label, placeholder, type }: InputProps) => {
           aria-invalid={touched && error ? true : false}
           aria-describedby={touched && error ? `${name}-error` : name}
           {...input}
+          {...props}
         />
         {touched && error && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">

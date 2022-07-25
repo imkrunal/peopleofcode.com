@@ -5,13 +5,24 @@ import { AppRouter } from "@server/routers/_app";
 import superjson from "superjson";
 import { trpc } from "@lib/trpc";
 import { SessionProvider } from "next-auth/react";
+import { NextPage } from "next";
+import { ReactElement, ReactNode } from "react";
 
-const App = ({ Component, pageProps }: AppProps) => {
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const session = trpc.useQuery(["user.public.session"]).data;
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <SessionProvider session={session || undefined}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </SessionProvider>
   );
 };

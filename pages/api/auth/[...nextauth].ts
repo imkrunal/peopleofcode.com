@@ -79,6 +79,22 @@ export default NextAuth({
   },
   providers,
   callbacks: {
+    async jwt({ token }) {
+      const existingUser = await prisma.user.findFirst({
+        where: { email: token.email! },
+      });
+      if (!existingUser) {
+        return token;
+      }
+
+      return {
+        id: existingUser.id,
+        name: existingUser.name,
+        username: existingUser.username,
+        email: existingUser.email,
+        role: existingUser.role,
+      };
+    },
     async session({ session, token }) {
       const pocSession: Session = {
         ...session,
