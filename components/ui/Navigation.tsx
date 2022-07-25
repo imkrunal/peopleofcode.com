@@ -1,10 +1,12 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { trpc } from "@lib/trpc";
 import classNames from "classnames";
+import { signOut } from "next-auth/react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, ReactNode } from "react";
 import { HiCode, HiMenu, HiX } from "react-icons/hi";
+import Button from "./Button";
 
 type NavLinkProps = LinkProps & {
   children?: ReactNode;
@@ -12,7 +14,7 @@ type NavLinkProps = LinkProps & {
 };
 
 const Navigation = () => {
-  const session = trpc.useQuery(["user.public.session"]).data;
+  const session = trpc.useQuery(["auth.public.session"]).data;
   const router = useRouter();
 
   const NavLink = ({ href, children, ...props }: NavLinkProps) => (
@@ -81,6 +83,16 @@ const Navigation = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {!session && (
+                  <div className="hidden md:block space-x-2">
+                    <Button href="/auth/login" size="sm">
+                      Sign in
+                    </Button>
+                    <Button href="/auth/register" size="sm">
+                      Register
+                    </Button>
+                  </div>
+                )}
                 {session && session !== null && (
                   <Menu as="div" className="ml-3 relative">
                     <div>
@@ -131,15 +143,15 @@ const Navigation = () => {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
+                            <button
+                              onClick={() => signOut()}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                "block px-4 py-2 text-sm text-gray-700 w-full text-left"
                               )}
                             >
                               Sign out
-                            </a>
+                            </button>
                           )}
                         </Menu.Item>
                       </Menu.Items>

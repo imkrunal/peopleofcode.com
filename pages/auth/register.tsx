@@ -1,54 +1,35 @@
 import { Alert, Button, Checkbox, Input } from "@components/ui";
-import { ErrorCode, getSession } from "@lib/auth";
+import { getSession } from "@lib/auth";
 import { FormikProvider, useFormik } from "formik";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import { trpc } from "@lib/trpc";
 
-const loginSchema = z.object({
+const registerSchema = z.object({
   email: z.string().email(),
   password: z.string(),
 });
 
-const errorMessages: { [key: string]: string } = {
-  [ErrorCode.IncorrectPassword]: "Incorrect password. Please try again.",
-  [ErrorCode.UserNotFound]: "Account does not exists.",
-  [ErrorCode.InternalServerError]:
-    "Something went wrong!! Try again or contact us.",
-  [ErrorCode.ThirdPartyIdentityProviderEnabled]:
-    "Account registered using social login.",
-};
-
-const Login = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+const Register = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const mutation = trpc.useMutation("auth.public.register", {
+    onSuccess: () => router.push("/"),
+    onError: (err) => setError(err.message),
+  });
   const form = useFormik({
     initialValues: {
+      name: "",
       email: "",
       password: "",
+      terms: true,
     },
-    validationSchema: toFormikValidationSchema(loginSchema),
-    onSubmit: async (values) => {
-      setLoading(true);
-      setError(null);
-      const res = await signIn<"credentials">("credentials", {
-        ...values,
-        redirect: false,
-      });
-      setLoading(false);
-      if (!res) {
-        setError("Something went wrong!! Please try later.");
-      } else if (res.error) {
-        setError(errorMessages[res.error]);
-      } else {
-        router.push("/");
-      }
-    },
+    validationSchema: toFormikValidationSchema(registerSchema),
+    onSubmit: async (values) => mutation.mutate(values),
   });
 
   return (
@@ -58,36 +39,33 @@ const Login = () => {
           Peopleofcode.com
         </h2>
         <h2 className="mt-4 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
+          Create your account
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={form.handleSubmit}>
             <FormikProvider value={form}>
+              <Input name="name" label="Full Name" />
               <Input name="email" type="email" label="Email Address" />
               <Input name="password" type="password" label="Password" />
-              <div className="flex items-center justify-between">
-                <Checkbox name="remember_me" label="Remember Me" />
-                <div className="text-sm">
-                  <Link href="/auth/forgot-password">
-                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Forgot your password?
-                    </a>
-                  </Link>
-                </div>
-              </div>
+              <Checkbox
+                name="terms"
+                label="By signing up, you agree to our Terms of Service and Privacy
+                Policy."
+                disabled
+              />
               {error && <Alert type="error">{error}</Alert>}
-              <Button type="submit" loading={loading} fullWidth>
-                Submit
+              <Button type="submit" loading={mutation.isLoading} fullWidth>
+                Sign up
               </Button>
             </FormikProvider>
           </form>
         </div>
         <div className="text-center mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/auth/register">
-            <a className="text-indigo-600">Create an account</a>
+          Already have an account?{" "}
+          <Link href="/auth/login">
+            <a className="text-indigo-600">Sign In</a>
           </Link>
         </div>
       </div>
@@ -95,7 +73,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { req } = ctx;
