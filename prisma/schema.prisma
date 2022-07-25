@@ -13,7 +13,7 @@ datasource db {
 generator zod {
   provider     = "zod-prisma"
   output       = ".zod"
-  imports      = "./zod-utils"
+  // imports      = "./zod-utils"
   relationMode = "default"
 }
 
